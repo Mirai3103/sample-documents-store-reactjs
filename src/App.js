@@ -10,6 +10,7 @@ import ScrollToTop from './components/ScrollToTop';
 import { ProgressBarStyle } from './components/LoadingScreen';
 import ThemePrimaryColor from './components/ThemePrimaryColor';
 // ----------------------------------------------------------------------
+import './app.css';
 
 export default function App() {
   return (

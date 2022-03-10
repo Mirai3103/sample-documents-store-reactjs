@@ -8,6 +8,7 @@ import { Slide, Button, ClickAwayListener, TextField, Chip } from '@mui/material
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios';
 import * as React from 'react';
+import { useNavigate } from 'react-router';
 import { MIconButton } from '../../components/@material-extend';
 import { StoreContext } from '../../store';
 
@@ -67,7 +68,7 @@ export default function Searchbar() {
   const handleSearch = (e) => {
     if (e.target.innerText.trim() === 'Search') {
       axios
-        .post('http://192.168.2.124:8081/api', {
+        .post('https://vanmaudb.herokuapp.com/api', {
           tags: selectedTags
         })
         .then((response) => {

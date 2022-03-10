@@ -1,4 +1,4 @@
-import { Suspense, lazy, useContext } from 'react';
+import { Suspense, lazy } from 'react';
 import { Navigate, useRoutes, useLocation } from 'react-router-dom';
 // layouts
 
@@ -6,7 +6,7 @@ import DashboardLayout from '../layouts/dashboard';
 import LogoOnlyLayout from '../layouts/LogoOnlyLayout';
 // components
 import LoadingScreen from '../components/LoadingScreen';
-import { StoreContext } from '../store';
+
 // IMPORT COMPONENTS
 import SearchPage from '../pages/SearchPage';
 // Dashboard
@@ -40,11 +40,11 @@ const Loadable = (Component) => (props) => {
 };
 
 export default function Router() {
-  const [storeState, dispatch] = useContext(StoreContext).data;
-  const allTagsChill = storeState.allTags.map((tag) => ({
-    path: `${tag.tag_id}`,
-    element: <PageTag key={tag.tag_id} id={tag.tag_id} title="Trending" />
-  }));
+  // const [storeState, dispatch] = useContext(StoreContext).data;
+  // const allTagsChill = storeState.allTags.map((tag) => ({
+  //   path: `${tag.tag_id}`,
+  //   element: <PageTag key={tag.tag_id} id={tag.tag_id} title="Trending" />
+  // }));
   // console.log(allTagsChill);
   return useRoutes([
     // Main Routes
@@ -69,10 +69,10 @@ export default function Router() {
         { path: '5', element: <PageTag id={5} title="Bày tỏ cảm xúc" /> },
         { path: '6', element: <PageTag id={6} title="Trending" /> },
         // { path: 'advancedSearch', element: <PageFour /> },
-        {
-          path: 'app',
-          children: [{ element: <Navigate to="/app/four" replace /> }, ...allTagsChill]
-        },
+        // {
+        //   path: 'app',
+        //   children: [{ element: <Navigate to="/app/four" replace /> }, ...allTagsChill]
+        // },
         { path: 'search', element: <SearchPage /> }
       ]
     },

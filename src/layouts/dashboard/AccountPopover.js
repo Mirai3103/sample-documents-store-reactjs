@@ -6,7 +6,7 @@ import settings2Fill from '@iconify/icons-eva/settings-2-fill';
 import { Link as RouterLink } from 'react-router-dom';
 // material
 import { alpha } from '@mui/material/styles';
-import { Avatar, Button, Box, Divider, MenuItem, Typography } from '@mui/material';
+import { Avatar, Box, Divider, MenuItem, Typography } from '@mui/material';
 // components
 import { MIconButton } from '../../components/@material-extend';
 import MenuPopover from '../../components/MenuPopover';
@@ -14,9 +14,9 @@ import MenuPopover from '../../components/MenuPopover';
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [
-  { label: 'Home', icon: homeFill, linkTo: '/' },
-  { label: 'Profile', icon: personFill, linkTo: '#' },
-  { label: 'Settings', icon: settings2Fill, linkTo: '#' }
+  { label: 'Home', icon: homeFill, linkTo: '/home' },
+  { label: 'My Profile', icon: personFill, linkTo: '#' },
+  { label: 'Góp ý', icon: settings2Fill, linkTo: '#' }
 ];
 
 // ----------------------------------------------------------------------
@@ -54,16 +54,19 @@ export default function AccountPopover() {
           })
         }}
       >
-        <Avatar alt="My Avatar" src="/static/mock-images/avatars/avatar_default.jpg" />
+        <Avatar
+          alt="My Avatar"
+          src="https://scontent.fsgn5-13.fna.fbcdn.net/v/t39.30808-6/270210023_1416346275430226_6674586463623128825_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=yCVZ7Eyw3usAX90Huhz&_nc_ht=scontent.fsgn5-13.fna&oh=00_AT9J25etbA2TmS5HdDuB80kX2rvj-7qv-YgrCIZb4ItxuQ&oe=622E6114"
+        />
       </MIconButton>
 
       <MenuPopover open={open} onClose={handleClose} anchorEl={anchorRef.current} sx={{ width: 220 }}>
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle1" noWrap>
-            displayName
+            Laffy
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            email
+            huuhoag1412@gmail.com
           </Typography>
         </Box>
 
@@ -91,11 +94,11 @@ export default function AccountPopover() {
           </MenuItem>
         ))}
 
-        <Box sx={{ p: 2, pt: 1.5 }}>
+        {/* <Box sx={{ p: 2, pt: 1.5 }}>
           <Button fullWidth color="inherit" variant="outlined">
             Logout
           </Button>
-        </Box>
+        </Box> */}
       </MenuPopover>
     </>
   );

@@ -42,7 +42,7 @@ export default function PageHome() {
           dispatch(setHomeTotalPage(1));
         });
     }
-  }, [dispatch, searchParams]);
+  }, [dispatch, searchParams, state.data.length]);
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -50,7 +50,7 @@ export default function PageHome() {
     <Page title="Home Page | Văn mẫu">
       <Container maxWidth={themeStretch ? false : 'xl'}>
         {state.data[0] === undefined ? (
-          <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row">
+          <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row" className="loading-spinner">
             <CircularProgress color="secondary" />
           </Stack>
         ) : (
@@ -66,7 +66,7 @@ export default function PageHome() {
               <AccordionDetails>
                 <Typography>{document.content}</Typography>
                 <br />
-                <Stack direction="row" spacing={2}>
+                <Stack className="copy-button" direction="row" spacing={2}>
                   <CopyButton content={document.content} />
                 </Stack>
               </AccordionDetails>

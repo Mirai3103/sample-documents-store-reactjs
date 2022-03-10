@@ -12,7 +12,7 @@ import { StoreContext } from '../store';
 // ----------------------------------------------------------------------
 
 export default function PageHome() {
-  const [state, dispatch] = useContext(StoreContext).data;
+  const state = useContext(StoreContext).data[0];
   const { themeStretch } = useSettings();
   console.log(state);
   const [expanded, setExpanded] = useState(false);
@@ -54,7 +54,7 @@ export default function PageHome() {
               <AccordionDetails>
                 <Typography>{document.content}</Typography>
                 <br />
-                <Stack direction="row" spacing={2}>
+                <Stack className="copy-button" direction="row" spacing={2}>
                   <CopyButton content={document.content} />
                 </Stack>
               </AccordionDetails>

@@ -5,7 +5,7 @@ import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDiss
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import AlignHorizontalLeftIcon from '@mui/icons-material/AlignHorizontalLeft';
+// import AlignHorizontalLeftIcon from '@mui/icons-material/AlignHorizontalLeft';
 import { PATH_DASHBOARD } from '../../routes/paths';
 // components
 // ----------------------------------------------------------------------
@@ -27,25 +27,25 @@ const sidebarConfig = [
       { title: 'Bày tỏ cảm xúc', path: PATH_DASHBOARD.general.pageFive, icon: <RecordVoiceOverIcon /> },
       { title: 'Trend', path: PATH_DASHBOARD.general.pageSix, icon: <TrendingUpIcon /> }
     ]
-  },
+  }
 
   // MANAGEMENT
   // ----------------------------------------------------------------------
-  {
-    subheader: 'Advanced',
-    items: [
-      {
-        title: 'All Tags',
-        path: PATH_DASHBOARD.app.root,
-        icon: <AlignHorizontalLeftIcon />,
-        children: [
-          { title: 'Four', path: PATH_DASHBOARD.app.pageFour },
-          { title: 'Five', path: PATH_DASHBOARD.app.pageFive },
-          { title: 'Six', path: PATH_DASHBOARD.app.pageSix }
-        ]
-      }
-    ]
-  }
+  // {
+  //   subheader: 'Advanced',
+  //   items: [
+  //     {
+  //       title: 'All Tags',
+  //       path: PATH_DASHBOARD.app.root,
+  //       icon: <AlignHorizontalLeftIcon />,
+  //       children: [
+  //         { title: 'Four', path: PATH_DASHBOARD.app.pageFour },
+  //         { title: 'Five', path: PATH_DASHBOARD.app.pageFive },
+  //         { title: 'Six', path: PATH_DASHBOARD.app.pageSix }
+  //       ]
+  //     }
+  //   ]
+  // }
 ];
 
 export default sidebarConfig;

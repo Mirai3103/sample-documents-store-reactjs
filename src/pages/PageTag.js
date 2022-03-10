@@ -49,7 +49,7 @@ export default function PageTag({ id, title }) {
     <Page title={`${title} | văn mẫu`}>
       <Container maxWidth={themeStretch ? false : 'xl'}>
         {documents[0] === undefined ? (
-          <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row">
+          <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row" className="loading-spinner">
             <CircularProgress color="secondary" />
           </Stack>
         ) : (
@@ -65,7 +65,7 @@ export default function PageTag({ id, title }) {
               <AccordionDetails>
                 <Typography>{document.content}</Typography>
                 <br />
-                <Stack direction="row" spacing={2}>
+                <Stack className="copy-button" direction="row" spacing={2}>
                   <CopyButton content={document.content} />
                 </Stack>
               </AccordionDetails>
