@@ -8,6 +8,8 @@ import { Slide, Button, ClickAwayListener, TextField, Chip } from '@mui/material
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Snackbar from '@mui/material/Snackbar';
+import * as React from 'react';
 import { MIconButton } from '../../components/@material-extend';
 import { StoreContext } from '../../store';
 
@@ -67,16 +69,16 @@ export default function Searchbar() {
   const handleSearch = (e) => {
     if (e.target.innerText.trim() === 'Search') {
       axios
-        .post('http://localhost:8081/api', {
+        .post('http://192.168.2.124:8081/api', {
           tags: selectedTags
         })
         .then((response) => {
           dispatch(setSearchData(response.data));
           console.log(response.data);
           navigate('/search');
+          handleClose(e);
         })
         .catch((error) => console.log(error));
-      handleClose(e);
     }
   };
   return (

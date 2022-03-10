@@ -19,27 +19,27 @@ import Page from '../components/Page';
 import PageNumber from './pagenumber/PageNumber';
 import { StoreContext } from '../store';
 
-import { setData } from '../store/reducer';
+import { setData, setHomeTotalPage } from '../store/reducer';
 // ----------------------------------------------------------------------
 
 export default function PageHome() {
   const [state, dispatch] = useContext(StoreContext).data;
   const { themeStretch } = useSettings();
   const [expanded, setExpanded] = useState(false);
-  const [totalPage, setTotalPage] = useState(1);
+  // const [totalPage, setTotalPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
   useEffect(() => {
     if (state.data.length === 0) {
-      fetch(`http://localhost:8081/api/home?page=${searchParams.get('page')}`)
+      fetch(`http://192.168.2.124:8081/api/home?page=${searchParams.get('page')}`)
         .then((res) => res.json())
         .then((data) => {
           dispatch(setData(data));
           const TOTAL_PAGE = Math.ceil(data[0].full_count / 10);
-          setTotalPage(TOTAL_PAGE);
+          dispatch(setHomeTotalPage(TOTAL_PAGE));
         })
         .catch((err) => {
           console.log(err);
-          setTotalPage(1);
+          dispatch(setHomeTotalPage(1));
         });
     }
   }, [dispatch, searchParams]);
@@ -73,7 +73,7 @@ export default function PageHome() {
             </Accordion>
           ))
         )}
-        <PageNumber searchParams={searchParams} pageCount={totalPage} setSearchParam={setSearchParams} />
+        <PageNumber searchParams={searchParams} pageCount={state.homeTotalPage} setSearchParam={setSearchParams} />
       </Container>
     </Page>
   );

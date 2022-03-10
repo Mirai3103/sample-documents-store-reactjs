@@ -27,7 +27,7 @@ export default function PageTag({ id, title }) {
   const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
   const [documents, setDocuments] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:8081/api/${id}?page=${searchParams.get('page')}`)
+    fetch(`http://192.168.2.124:8081/api/${id}?page=${searchParams.get('page')}`)
       .then((res) => res.json())
       .then((data) => {
         setDocuments(data);

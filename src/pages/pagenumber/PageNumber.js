@@ -12,7 +12,7 @@ export default function BasicPagination({ searchParams, pageCount, setSearchPara
       <Pagination
         color="primary"
         page={Number(searchParams.get('page'))}
-        size="large"
+        size="medium"
         count={Number(pageCount)}
         onChange={(e, page) => {
           setSearchParam({ page: `${page}` });

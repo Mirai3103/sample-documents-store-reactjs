@@ -1,25 +1,14 @@
 // material
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  CircularProgress,
-  Container,
-  Stack,
-  Typography
-} from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Container, Alert, Stack, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 // hooks
-import { useContext, useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useContext, useState } from 'react';
 import CopyButton from './CopyButton';
 import useSettings from '../hooks/useSettings';
 // components
 import Page from '../components/Page';
-import PageNumber from './pagenumber/PageNumber';
 import { StoreContext } from '../store';
 
-import { setData } from '../store/reducer';
 // ----------------------------------------------------------------------
 
 export default function PageHome() {
@@ -51,9 +40,7 @@ export default function PageHome() {
     <Page title="Search Page | Văn mẫu">
       <Container maxWidth={themeStretch ? false : 'xl'}>
         {state.searchData[0] === undefined ? (
-          <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row">
-            <CircularProgress color="secondary" />
-          </Stack>
+          <Alert severity="info">Khong tim thay van mau nao chua cac tag tren</Alert>
         ) : (
           state.searchData.map((document) => (
             <Accordion
