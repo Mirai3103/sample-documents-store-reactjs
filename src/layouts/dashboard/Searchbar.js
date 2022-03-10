@@ -7,14 +7,12 @@ import { Slide, Button, ClickAwayListener, TextField, Chip } from '@mui/material
 // components
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import Snackbar from '@mui/material/Snackbar';
 import * as React from 'react';
 import { MIconButton } from '../../components/@material-extend';
 import { StoreContext } from '../../store';
 
 // ----------------------------------------------------------------------
-import { setAllTags, setData, setSearchData } from '../../store/reducer';
+import { setAllTags, setSearchData } from '../../store/reducer';
 // ----------------------------------------------------------------------
 const SearchbarStyle = styled('div')(({ theme }) => ({
   top: 0,
@@ -39,7 +37,7 @@ export default function Searchbar() {
   const [isOpen, setOpen] = useState(false);
   const [tagState, dispatch] = useContext(StoreContext).data;
   useEffect(() => {
-    fetch('http://localhost:8081/tag')
+    fetch('https://vanmaudb.herokuapp.com/tag')
       .then((res) => res.json())
       .then((data) => {
         dispatch(setAllTags(data));
