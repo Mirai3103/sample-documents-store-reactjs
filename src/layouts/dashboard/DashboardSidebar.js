@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 // material
 import { alpha, styled } from '@mui/material/styles';
@@ -13,6 +13,7 @@ import NavSection from '../../components/NavSection';
 //
 import { MHidden } from '../../components/@material-extend';
 import sidebarConfig from './SidebarConfig';
+import DialogForm from './DialogForm';
 
 // ----------------------------------------------------------------------
 
@@ -77,10 +78,17 @@ DashboardSidebar.propTypes = {
   isOpenSidebar: PropTypes.bool,
   onCloseSidebar: PropTypes.func
 };
-
 export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   const { pathname } = useLocation();
+  const [openFormDialog, setOpenFormDialog] = useState(false);
 
+  const handleClickOpenFormDialog = () => {
+    setOpenFormDialog(true);
+  };
+
+  const handleCloseFormDialog = () => {
+    setOpenFormDialog(false);
+  };
   const { isCollapse, collapseClick, collapseHover, onToggleCollapse, onHoverEnter, onHoverLeave } =
     useCollapseDrawer();
 
@@ -126,12 +134,12 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         {isCollapse ? (
           <Avatar alt="My Avatar" src="/static/mock-images/avatars/avatar_default.jpg" sx={{ mx: 'auto', mb: 2 }} />
         ) : (
-          <Button variant="contained" to="#">
+          <Button variant="contained" onClick={handleClickOpenFormDialog} to="#">
             Đóng góp văn mẫu
           </Button>
         )}
       </Stack>
-
+      <DialogForm openFormDialog={openFormDialog} handleCloseFormDialog={handleCloseFormDialog} />
       <NavSection navConfig={sidebarConfig} isShow={!isCollapse} />
     </Scrollbar>
   );
