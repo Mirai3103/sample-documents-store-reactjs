@@ -8,6 +8,7 @@ import { StoreContext } from '../../store';
 
 export default function DialogForm({ openFormDialog, handleCloseFormDialog }) {
   let selectedTags = [];
+  // eslint-disable-next-line no-unused-vars
   const [tagState, dispatch] = useContext(StoreContext).data;
   const defaultValues = {
     password: '',
