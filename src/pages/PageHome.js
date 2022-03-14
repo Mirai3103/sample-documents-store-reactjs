@@ -42,12 +42,17 @@ export default function PageHome() {
           dispatch(setHomeTotalPage(1));
         });
     }
-  }, [dispatch, searchParams, state.data.length]);
+    return () => {
+      dispatch(setData([]));
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, searchParams]);
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
   return (
     <Page title="Home Page | Văn mẫu">
+      <h1 style={{ marginBottom: '1rem' }}>Tất cả văn mẫu</h1>
       <Container maxWidth={themeStretch ? false : 'xl'}>
         {state.data[0] === undefined ? (
           <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row" className="loading-spinner">

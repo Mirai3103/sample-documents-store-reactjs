@@ -1,13 +1,16 @@
 import { Button, Chip, Dialog, DialogActions, DialogContent, DialogTitle, Stack, TextField } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
+import MuiAlert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 import { useContext } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import * as React from 'react';
 import { StoreContext } from '../../store';
-// import { toolbarFull, toolbarSimple } from '../../components/editor/draft/DraftEditorToolbar';
 
+// import { toolbarFull, toolbarSimple } from '../../components/editor/draft/DraftEditorToolbar';
+const Alert = React.forwardRef((props, ref) => <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />);
 export default function DialogForm({ openFormDialog, handleCloseFormDialog }) {
-  let selectedTags = [];
+  const [selectedTags, setSelectedTags] = React.useState([]);
   // eslint-disable-next-line no-unused-vars
   const [tagState, dispatch] = useContext(StoreContext).data;
   const defaultValues = {
@@ -15,7 +18,19 @@ export default function DialogForm({ openFormDialog, handleCloseFormDialog }) {
     forWhat: '',
     document: ''
   };
+  const [open, setOpen] = React.useState(false);
 
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
   // const handlesubmit = () => {
   //   console.log('submit');
   // };
@@ -38,13 +53,26 @@ export default function DialogForm({ openFormDialog, handleCloseFormDialog }) {
     defaultValues
   });
   const onSubmit = async (data) => {
+    console.log(selectedTags);
     await new Promise((resolve) => setTimeout(resolve, 500));
-    alert(JSON.stringify({ ...data, tags: selectedTags }, null, 2));
+    alert(JSON.stringify({ ...data, selectedTags }, null, 2));
+    setSelectedTags([]);
     reset();
+    handleClick();
   };
   return (
     <Dialog open={openFormDialog} onClose={handleCloseFormDialog} fullWidth>
       <DialogTitle>Đóng góp văn mẫu</DialogTitle>
+      <Snackbar
+        open={open}
+        autoHideDuration={4000}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        onClose={handleClose}
+      >
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          Gửi thành công!
+        </Alert>
+      </Snackbar>
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
           <Stack marginTop={`${1}em`} spacing={3}>
@@ -59,13 +87,20 @@ export default function DialogForm({ openFormDialog, handleCloseFormDialog }) {
               name="forWhat"
               control={control}
               render={({ field, fieldState: { error } }) => (
-                <TextField {...field} label="Dùng để" error={Boolean(error)} helperText={error?.message} />
+                <TextField
+                  autoComplete="off"
+                  {...field}
+                  label="Dùng để"
+                  error={Boolean(error)}
+                  helperText={error?.message}
+                />
               )}
             />
 
             <Autocomplete
+              value={selectedTags}
               onChange={(e, value) => {
-                selectedTags = value;
+                setSelectedTags(value);
               }}
               sx={{ mr: 1, fontWeight: 'fontWeightBold' }}
               autoFocus
@@ -105,7 +140,7 @@ export default function DialogForm({ openFormDialog, handleCloseFormDialog }) {
           <Button onClick={handleCloseFormDialog} color="inherit">
             Cancel
           </Button>
-          <Button type="submit" onClick={handleCloseFormDialog} variant="contained">
+          <Button type="submit" variant="contained">
             Gửi
           </Button>
         </DialogActions>

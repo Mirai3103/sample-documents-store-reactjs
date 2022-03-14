@@ -16,23 +16,6 @@ export default function PageHome() {
   const { themeStretch } = useSettings();
   console.log(state);
   const [expanded, setExpanded] = useState(false);
-  // const [totalPage, setTotalPage] = useState(1);
-  // const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
-  // useEffect(() => {
-  //   if (state.data.length === 0) {
-  //     fetch(`http://localhost:8081/api/home?page=${searchParams.get('page')}`)
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         dispatch(setData(data));
-  //         const TOTAL_PAGE = Math.ceil(data[0].full_count / 10);
-  //         setTotalPage(TOTAL_PAGE);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //         setTotalPage(1);
-  //       });
-  //   }
-  // }, [dispatch, searchParams]);
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };

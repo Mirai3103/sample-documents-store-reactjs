@@ -3,20 +3,19 @@ import { useRef, useState } from 'react';
 import homeFill from '@iconify/icons-eva/home-fill';
 import personFill from '@iconify/icons-eva/person-fill';
 import settings2Fill from '@iconify/icons-eva/settings-2-fill';
-import { Link as RouterLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // material
 import { alpha } from '@mui/material/styles';
 import { Avatar, Box, Divider, MenuItem, Typography } from '@mui/material';
 // components
 import { MIconButton } from '../../components/@material-extend';
 import MenuPopover from '../../components/MenuPopover';
-
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [
-  { label: 'Home', icon: homeFill, linkTo: '/home' },
-  { label: 'My Profile', icon: personFill, linkTo: '#' },
-  { label: 'Góp ý', icon: settings2Fill, linkTo: '#' }
+  { id: 1, label: 'Home', icon: homeFill, linkTo: '/home' },
+  { id: 2, label: 'My Profile', icon: personFill, linkTo: 'https://facebook.com/mirai1309' },
+  { id: 3, label: 'Góp ý', icon: settings2Fill, linkTo: '#' }
 ];
 
 // ----------------------------------------------------------------------
@@ -24,12 +23,28 @@ const MENU_OPTIONS = [
 export default function AccountPopover() {
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
-
+  const navigate = useNavigate();
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
+  };
+  const handleClick = (id) => {
+    switch (id) {
+      case 1:
+        navigate('/home');
+        break;
+      case 2:
+        window.open('https://facebook.com/mirai1309');
+        break;
+      case 3:
+        break;
+      default:
+        break;
+    }
+    console.log(id);
+    handleClose();
   };
 
   return (
@@ -74,10 +89,10 @@ export default function AccountPopover() {
 
         {MENU_OPTIONS.map((option) => (
           <MenuItem
-            key={option.label}
-            to={option.linkTo}
-            component={RouterLink}
-            onClick={handleClose}
+            key={option.id}
+            // to="#"
+            // component={RouterLink}
+            onClick={() => handleClick(option.id)}
             sx={{ typography: 'body2', py: 1, px: 2.5 }}
           >
             <Box

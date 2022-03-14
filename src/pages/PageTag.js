@@ -47,6 +47,7 @@ export default function PageTag({ id, title }) {
   };
   return (
     <Page title={`${title} | văn mẫu`}>
+      <h1 style={{ marginBottom: '1rem' }}>{title}</h1>
       <Container maxWidth={themeStretch ? false : 'xl'}>
         {documents[0] === undefined ? (
           <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row" className="loading-spinner">

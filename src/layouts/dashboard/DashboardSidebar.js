@@ -132,7 +132,11 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         </Stack>
 
         {isCollapse ? (
-          <Avatar alt="My Avatar" src="/static/mock-images/avatars/avatar_default.jpg" sx={{ mx: 'auto', mb: 2 }} />
+          <Avatar
+            alt="My Avatar"
+            src="https://cand.com.vn/Files/Image/vanduc/2019/09/19/thumb_660_50ba9355-64a3-41d1-a2ff-dfcad5812014.jpg"
+            sx={{ mx: 'auto', mb: 2 }}
+          />
         ) : (
           <Button variant="contained" onClick={handleClickOpenFormDialog} to="#">
             Đóng góp văn mẫu
