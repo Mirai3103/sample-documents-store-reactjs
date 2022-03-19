@@ -20,6 +20,7 @@ import PageNumber from './pagenumber/PageNumber';
 import { StoreContext } from '../store';
 
 import { setData, setHomeTotalPage } from '../store/reducer';
+import { BASE_URL } from '../config';
 // ----------------------------------------------------------------------
 
 export default function PageHome() {
@@ -30,7 +31,7 @@ export default function PageHome() {
   const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
   useEffect(() => {
     if (state.data.length === 0) {
-      fetch(`https://vanmaudb.herokuapp.com/api/home?page=${searchParams.get('page')}`)
+      fetch(`${BASE_URL}/api/home?page=${searchParams.get('page')}`)
         .then((res) => res.json())
         .then((data) => {
           dispatch(setData(data));

@@ -14,6 +14,7 @@ import { StoreContext } from '../../store';
 
 // ----------------------------------------------------------------------
 import { setAllTags, setSearchData } from '../../store/reducer';
+import { BASE_URL } from '../../config';
 // ----------------------------------------------------------------------
 const SearchbarStyle = styled('div')(({ theme }) => ({
   top: 0,
@@ -38,10 +39,11 @@ export default function Searchbar() {
   const [isOpen, setOpen] = useState(false);
   const [tagState, dispatch] = useContext(StoreContext).data;
   useEffect(() => {
-    fetch('https://vanmaudb.herokuapp.com/tag')
+    fetch(`${BASE_URL}/tag`)
       .then((res) => res.json())
       .then((data) => {
         dispatch(setAllTags(data));
+        console.log(data);
       })
       .catch((e) => {
         console.log(e);

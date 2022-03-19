@@ -17,6 +17,7 @@ import useSettings from '../hooks/useSettings';
 // components
 import Page from '../components/Page';
 import PageNumber from './pagenumber/PageNumber';
+import { BASE_URL } from '../config';
 
 // ----------------------------------------------------------------------
 
@@ -27,7 +28,7 @@ export default function PageTag({ id, title }) {
   const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
   const [documents, setDocuments] = useState([]);
   useEffect(() => {
-    fetch(`https://vanmaudb.herokuapp.com/api/${id}?page=${searchParams.get('page')}`)
+    fetch(`${BASE_URL}/api/${id}?page=${searchParams.get('page')}`)
       .then((res) => res.json())
       .then((data) => {
         setDocuments(data);
