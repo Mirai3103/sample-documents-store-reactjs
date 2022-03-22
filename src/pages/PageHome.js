@@ -73,7 +73,7 @@ export default function PageHome() {
                 <Typography>{document.content}</Typography>
                 <br />
                 <Stack className="copy-button" direction="row" spacing={2}>
-                  <CopyButton content={document.content} />
+                  <CopyButton id={document.document_id} content={document.content} />
                 </Stack>
               </AccordionDetails>
             </Accordion>

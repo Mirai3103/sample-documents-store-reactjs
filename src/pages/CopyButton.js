@@ -4,10 +4,12 @@ import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import axios from 'axios';
+import { BASE_URL } from '../config';
 
 const Alert = React.forwardRef((props, ref) => <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />);
 
-export default function CopyButton({ content }) {
+export default function CopyButton({ id, content }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
@@ -30,6 +32,7 @@ export default function CopyButton({ content }) {
         onClick={(e) => {
           e.preventDefault();
           navigator.clipboard.writeText(content);
+          axios.post(`${BASE_URL}/update/document`, { documentId: id });
           handleClick();
         }}
       >
