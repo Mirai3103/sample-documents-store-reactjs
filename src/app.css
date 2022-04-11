@@ -13,3 +13,12 @@
 .MuiTypography-root{
   font-size: 1.1em !important;
 }
+#needcenter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#needcenter > button:first-child{
+  width: 20%;
+  padding: 0.5em;
+}

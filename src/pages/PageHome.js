@@ -18,7 +18,7 @@ import useSettings from '../hooks/useSettings';
 import Page from '../components/Page';
 import PageNumber from './pagenumber/PageNumber';
 import { StoreContext } from '../store';
-
+import SurveyDialog from '../layouts/dashboard/SurveyDialog';
 import { setData, setHomeTotalPage } from '../store/reducer';
 import { BASE_URL } from '../config';
 // ----------------------------------------------------------------------
@@ -53,6 +53,7 @@ export default function PageHome() {
   };
   return (
     <Page title="Home Page | Văn mẫu">
+      <SurveyDialog />
       <h1 style={{ marginBottom: '1rem' }}>Tất cả văn mẫu</h1>
       <Container maxWidth={themeStretch ? false : 'xl'}>
         {state.data[0] === undefined ? (

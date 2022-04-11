@@ -36,7 +36,8 @@ export default function AccountPopover() {
         navigate('/home');
         break;
       case 2:
-        window.open('https://facebook.com/mirai1309');
+        alert('Tôi ẩn danh');
+        // window.open('https://facebook.com/mirai1309');
         break;
       case 3:
         break;
