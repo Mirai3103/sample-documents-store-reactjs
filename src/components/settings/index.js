@@ -10,7 +10,7 @@ import { MIconButton } from '../@material-extend';
 import SettingMode from './SettingMode';
 import SettingColor from './SettingColor';
 // import SettingStretch from './SettingStretch';
-import SettingDirection from './SettingDirection';
+
 import SettingFullscreen from './SettingFullscreen';
 
 // ----------------------------------------------------------------------
