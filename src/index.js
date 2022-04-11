@@ -1,5 +1,6 @@
 // scroll bar
 import 'simplebar/src/simplebar.css';
+import ReactGA from 'react-ga';
 
 import ReactDOM from 'react-dom';
 import { StrictMode } from 'react';
@@ -15,6 +16,8 @@ import reportWebVitals from './reportWebVitals';
 import { StoreProvider } from './store';
 // ----------------------------------------------------------------------
 
+ReactGA.initialize('G-PLZ6F33ZJ3');
+ReactGA.pageview(window.location.pathname + window.location.search);
 ReactDOM.render(
   <StrictMode>
     <HelmetProvider>

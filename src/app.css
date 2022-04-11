@@ -9,3 +9,7 @@
   align-items: center;
   margin-bottom: 1em;
 }
+
+.MuiTypography-root{
+  font-size: 1.1em !important;
+}

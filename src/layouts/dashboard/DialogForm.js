@@ -106,9 +106,10 @@ export default function DialogForm({ openFormDialog, handleCloseFormDialog }) {
       setIsAddTagTab(false);
       setOpen(false);
       setLoading(false);
-      handleCloseFormDialog();
+      // handleCloseFormDialog();
+      console.log('unmount');
     },
-    [handleCloseFormDialog, openFormDialog]
+    [openFormDialog]
   );
   return (
     <Dialog open={openFormDialog} onClose={handleCloseFormDialog} fullWidth>

@@ -7,7 +7,7 @@ import { Box, Stack, Avatar, Drawer, Tooltip, CardActionArea, Button } from '@mu
 // hooks
 import useCollapseDrawer from '../../hooks/useCollapseDrawer';
 // components
-import Logo from '../../components/Logo';
+import LogoOwn from '../../components/LogoOwn';
 import Scrollbar from '../../components/Scrollbar';
 import NavSection from '../../components/NavSection';
 //
@@ -123,7 +123,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
       >
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           <Box component={RouterLink} to="/" sx={{ display: 'inline-flex' }}>
-            <Logo />
+            <LogoOwn />
           </Box>
 
           <MHidden width="lgDown">
