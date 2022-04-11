@@ -65,8 +65,8 @@ export default function AlertDialog() {
         <DialogTitle id="alert-dialog-title">Bạn có thích giao diện hiện tại?</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-           Vì văn mẫu quá nhiều, hiện đã có tìm theo nhiều tag nhưng chưa các văn chưa được bổ xung tag đầy đủ.
-            Tương lai sẽ có thêm đăng nhập, có quyền thêm sửa xóa với 1 số người.
+            Vì văn mẫu quá nhiều, hiện đã có tìm theo nhiều tag nhưng chưa các văn chưa được bổ xung tag đầy đủ. Tương
+            lai sẽ có thêm đăng nhập, có quyền thêm sửa xóa với 1 số người.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
