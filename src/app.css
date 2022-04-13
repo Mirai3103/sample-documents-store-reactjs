@@ -2,7 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
+
 .loading-spinner {
   display: flex;
   justify-content: center;
@@ -21,4 +24,8 @@
 #needcenter > button:first-child{
   width: 20%;
   padding: 0.5em;
+}
+.MuiAccordionSummary-root:not(.Mui-expanded) {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.12);
+
 }

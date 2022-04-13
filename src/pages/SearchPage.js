@@ -8,13 +8,12 @@ import useSettings from '../hooks/useSettings';
 // components
 import Page from '../components/Page';
 import { StoreContext } from '../store';
+import { TagInfoMemo } from '../components/TagInfo';
 
-// ----------------------------------------------------------------------
-
+// ----------------------------------------------------------------------let dataSearch = [];
 export default function PageHome() {
-  const state = useContext(StoreContext).data[0];
+  const [state, setState] = useContext(StoreContext).data;
   const { themeStretch } = useSettings();
-  console.log(state);
   const [expanded, setExpanded] = useState(false);
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -39,6 +38,7 @@ export default function PageHome() {
                 <br />
                 <Stack className="copy-button" direction="row" spacing={2}>
                   <CopyButton id={document.document_id} content={document.content} />
+                  <TagInfoMemo documentId={document.document_id} allTags={state.allTags} />
                 </Stack>
               </AccordionDetails>
             </Accordion>

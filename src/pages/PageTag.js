@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 // hooks
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import CopyButton from './CopyButton';
 import useSettings from '../hooks/useSettings';
@@ -18,21 +18,24 @@ import useSettings from '../hooks/useSettings';
 import Page from '../components/Page';
 import PageNumber from './pagenumber/PageNumber';
 import { BASE_URL } from '../config';
+import { TagInfoMemo } from '../components/TagInfo';
+import { StoreContext } from '../store';
 
 // ----------------------------------------------------------------------
 
 export default function PageTag({ id, title }) {
   const { themeStretch } = useSettings();
+  const [state, dispatch] = useContext(StoreContext).data;
   const [expanded, setExpanded] = useState(false);
   const [totalPage, setTotalPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
   const [documents, setDocuments] = useState([]);
   useEffect(() => {
-    fetch(`${BASE_URL}/api/${id}?page=${searchParams.get('page')}`)
+    fetch(`${BASE_URL}/api/${id}?page=${searchParams.get('page')}`, { mode: 'cors' })
       .then((res) => res.json())
       .then((data) => {
         setDocuments(data);
-        const TOTAL_PAGE = Math.ceil(data[0].full_count / 10);
+        const TOTAL_PAGE = Math.ceil(data[0].full_count / 20);
         setTotalPage(TOTAL_PAGE);
       })
       .catch((err) => {
@@ -69,6 +72,7 @@ export default function PageTag({ id, title }) {
                 <br />
                 <Stack className="copy-button" direction="row" spacing={2}>
                   <CopyButton id={document.document_id} content={document.content} />
+                  <TagInfoMemo documentId={document.document_id} allTags={state.allTags} />
                 </Stack>
               </AccordionDetails>
             </Accordion>

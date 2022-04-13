@@ -33,15 +33,13 @@ const reducer = (state, action) => {
     case SET_DATA:
       return {
         ...state,
-        data: action.payload,
-        searchData: []
+        data: action.payload
       };
 
     case SET_ALL_TAGS:
       return {
         ...state,
-        allTags: action.payload,
-        searchData: []
+        allTags: action.payload
       };
     case SET_SEARCH_DATA:
       return {

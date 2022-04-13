@@ -43,7 +43,6 @@ export default function Searchbar() {
       .then((res) => res.json())
       .then((data) => {
         dispatch(setAllTags(data));
-        console.log(data);
       })
       .catch((e) => {
         console.log(e);
@@ -70,12 +69,12 @@ export default function Searchbar() {
   const handleSearch = (e) => {
     if (e.target.innerText.trim() === 'Search') {
       axios
-        .post('https://vanmaudb.herokuapp.com/api', {
+        .post(`${BASE_URL}/api`, {
           tags: selectedTags
         })
         .then((response) => {
           dispatch(setSearchData(response.data));
-          console.log(response.data);
+          console.log('Search success');
           navigate('/search');
           handleClose(e);
         })

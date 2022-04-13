@@ -21,6 +21,7 @@ import { StoreContext } from '../store';
 import SurveyDialog from '../layouts/dashboard/SurveyDialog';
 import { setData, setHomeTotalPage } from '../store/reducer';
 import { BASE_URL } from '../config';
+import { TagInfoMemo } from '../components/TagInfo';
 // ----------------------------------------------------------------------
 
 export default function PageHome() {
@@ -31,11 +32,11 @@ export default function PageHome() {
   const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
   useEffect(() => {
     if (state.data.length === 0) {
-      fetch(`${BASE_URL}/api/home?page=${searchParams.get('page')}`)
+      fetch(`${BASE_URL}/api/home?page=${searchParams.get('page')}`, { mode: 'cors' })
         .then((res) => res.json())
         .then((data) => {
           dispatch(setData(data));
-          const TOTAL_PAGE = Math.ceil(data[0].full_count / 10);
+          const TOTAL_PAGE = Math.ceil(data[0].full_count / 20);
           dispatch(setHomeTotalPage(TOTAL_PAGE));
         })
         .catch((err) => {
@@ -51,6 +52,7 @@ export default function PageHome() {
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
   return (
     <Page title="Home Page | Văn mẫu">
       <SurveyDialog />
@@ -75,6 +77,7 @@ export default function PageHome() {
                 <br />
                 <Stack className="copy-button" direction="row" spacing={2}>
                   <CopyButton id={document.document_id} content={document.content} />
+                  <TagInfoMemo documentId={document.document_id} allTags={state.allTags} />
                 </Stack>
               </AccordionDetails>
             </Accordion>
