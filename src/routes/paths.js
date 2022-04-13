@@ -16,7 +16,8 @@ export const PATH_DASHBOARD = {
     pageThree: path(ROOTS_DASHBOARD, '/3'),
     pageFour: path(ROOTS_DASHBOARD, '/4'),
     pageFive: path(ROOTS_DASHBOARD, '/5'),
-    pageSix: path(ROOTS_DASHBOARD, '/6')
+    pageSix: path(ROOTS_DASHBOARD, '/6'),
+    login: path(ROOTS_DASHBOARD, '/login')
   },
   // app: {
   //   root: path(ROOTS_DASHBOARD, '/app'),

@@ -9,6 +9,7 @@ import LoadingScreen from '../components/LoadingScreen';
 
 // IMPORT COMPONENTS
 import SearchPage from '../pages/SearchPage';
+import Login from '../pages/Login';
 // Dashboard
 
 // ----------------------------------------------------------------------
@@ -68,6 +69,7 @@ export default function Router() {
         { path: '4', element: <PageTag id={4} title="Văn học & nghệ thuật" /> },
         { path: '5', element: <PageTag id={5} title="Bày tỏ cảm xúc" /> },
         { path: '6', element: <PageTag id={6} title="Trending" /> },
+        { path: 'login', element: <Login /> },
         // { path: 'advancedSearch', element: <PageFour /> },
         // {
         //   path: 'app',

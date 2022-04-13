@@ -1,15 +1,16 @@
 import { Icon } from '@iconify/react';
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import homeFill from '@iconify/icons-eva/home-fill';
 import personFill from '@iconify/icons-eva/person-fill';
 import settings2Fill from '@iconify/icons-eva/settings-2-fill';
 import { useNavigate } from 'react-router-dom';
 // material
 import { alpha } from '@mui/material/styles';
-import { Avatar, Box, Divider, MenuItem, Typography } from '@mui/material';
+import { Avatar, Box, Button, Divider, MenuItem, Typography } from '@mui/material';
 // components
 import { MIconButton } from '../../components/@material-extend';
 import MenuPopover from '../../components/MenuPopover';
+import { AuthContext } from '../../contexts/AuthProvider';
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [
@@ -21,6 +22,7 @@ const MENU_OPTIONS = [
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {
+  const AuthData = useContext(AuthContext);
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
@@ -47,8 +49,17 @@ export default function AccountPopover() {
     console.log(id);
     handleClose();
   };
-
-  return (
+  const handleLogin = () => {
+    navigate('/login');
+  };
+  console.log(AuthData.user.photoURL);
+  return AuthData.user.displayName === undefined ? (
+    <Box sx={{ p: 2, pt: 1.5 }}>
+      <Button fullWidth color="secondary" variant="outlined" onClick={handleLogin}>
+        Log in
+      </Button>
+    </Box>
+  ) : (
     <>
       <MIconButton
         ref={anchorRef}
@@ -70,19 +81,16 @@ export default function AccountPopover() {
           })
         }}
       >
-        <Avatar
-          alt="My Avatar"
-          src="https://scontent.fsgn5-13.fna.fbcdn.net/v/t39.30808-6/270210023_1416346275430226_6674586463623128825_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=yCVZ7Eyw3usAX90Huhz&_nc_ht=scontent.fsgn5-13.fna&oh=00_AT9J25etbA2TmS5HdDuB80kX2rvj-7qv-YgrCIZb4ItxuQ&oe=622E6114"
-        />
+        <Avatar alt="My Avatar" src={AuthData.user.photoURL} />
       </MIconButton>
 
       <MenuPopover open={open} onClose={handleClose} anchorEl={anchorRef.current} sx={{ width: 220 }}>
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle1" noWrap>
-            Laffy
+            {AuthData.user.displayName}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            huuhoag1412@gmail.com
+            {AuthData.user.email}
           </Typography>
         </Box>
 
@@ -110,11 +118,11 @@ export default function AccountPopover() {
           </MenuItem>
         ))}
 
-        {/* <Box sx={{ p: 2, pt: 1.5 }}>
+        <Box sx={{ p: 2, pt: 1.5 }}>
           <Button fullWidth color="inherit" variant="outlined">
             Logout
           </Button>
-        </Box> */}
+        </Box>
       </MenuPopover>
     </>
   );

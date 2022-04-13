@@ -22,9 +22,13 @@ import SurveyDialog from '../layouts/dashboard/SurveyDialog';
 import { setData, setHomeTotalPage } from '../store/reducer';
 import { BASE_URL } from '../config';
 import { TagInfoMemo } from '../components/TagInfo';
+import { AuthContext } from '../contexts/AuthProvider';
+
 // ----------------------------------------------------------------------
 
 export default function PageHome() {
+  const AuthData = useContext(AuthContext);
+  console.log(AuthData);
   const [state, dispatch] = useContext(StoreContext).data;
   const { themeStretch } = useSettings();
   const [expanded, setExpanded] = useState(false);
