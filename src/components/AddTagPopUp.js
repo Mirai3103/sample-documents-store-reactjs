@@ -19,7 +19,6 @@ function AddTagPopUp({ documentId, allTags, closeParent }) {
     setAnchorEl(null);
   };
   const handleAddTag = () => {
-    console.log(selectedTags);
     axios.post(`${BASE_URL}/add/tagtodoc`, {
       documentId,
       selectedTags

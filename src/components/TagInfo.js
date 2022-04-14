@@ -18,9 +18,6 @@ function TagInfo({ documentId, allTags }) {
       })
       .then((res) => {
         setTagInfo(res.data);
-        console.log('hu');
-        console.log(allTags);
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);

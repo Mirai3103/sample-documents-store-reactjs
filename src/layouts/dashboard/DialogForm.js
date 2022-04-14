@@ -14,7 +14,7 @@ import { setAllTags } from '../../store/reducer';
 import generateToken, { BASE_URL } from '../../config';
 // import { toolbarFull, toolbarSimple } from '../../components/editor/draft/DraftEditorToolbar';
 const Alert = React.forwardRef((props, ref) => <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />);
-export default function DialogForm({ openFormDialog, handleCloseFormDialog }) {
+export default function DialogForm({ openFormDialog, handleCloseFormDialog, uid }) {
   const [selectedTags, setSelectedTags] = React.useState([]);
   // eslint-disable-next-line no-unused-vars
   const [tagState, dispatch] = useContext(StoreContext).data;
@@ -35,7 +35,8 @@ export default function DialogForm({ openFormDialog, handleCloseFormDialog }) {
     axios
       .post(`${BASE_URL}/add/tag`, {
         tag: tagName,
-        key: generateToken(new Date().getMinutes())
+        key: generateToken(new Date().getMinutes()),
+        uid
       })
       .then((res) => {
         const { data } = res;
@@ -56,10 +57,6 @@ export default function DialogForm({ openFormDialog, handleCloseFormDialog }) {
 
     setOpen(false);
   };
-  // const handlesubmit = () => {
-  //   console.log('submit');
-  // };
-  // const fileInputRef = useRef(null);
 
   const {
     // eslint-disable-next-line no-unused-vars

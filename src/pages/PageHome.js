@@ -5,6 +5,7 @@ import {
   AccordionSummary,
   CircularProgress,
   Container,
+  IconButton,
   Stack,
   Typography
 } from '@mui/material';
@@ -12,6 +13,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 // hooks
 import { useContext, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import DeleteIcon from '@mui/icons-material/Delete';
+import axios from 'axios';
 import CopyButton from './CopyButton';
 import useSettings from '../hooks/useSettings';
 // components
@@ -23,12 +26,10 @@ import { setData, setHomeTotalPage } from '../store/reducer';
 import { BASE_URL } from '../config';
 import { TagInfoMemo } from '../components/TagInfo';
 import { AuthContext } from '../contexts/AuthProvider';
-
 // ----------------------------------------------------------------------
 
 export default function PageHome() {
   const AuthData = useContext(AuthContext);
-  console.log(AuthData);
   const [state, dispatch] = useContext(StoreContext).data;
   const { themeStretch } = useSettings();
   const [expanded, setExpanded] = useState(false);
@@ -56,7 +57,18 @@ export default function PageHome() {
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
-
+  const handleDelete = (event, documentId) => {
+    axios
+      .post(`${BASE_URL}/deleteDocument`, {
+        documentId
+      })
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <Page title="Home Page | Văn mẫu">
       <SurveyDialog />
@@ -74,7 +86,14 @@ export default function PageHome() {
               onChange={handleChange(document.document_id)}
             >
               <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-                <Typography>{document.title}</Typography>
+                <div style={{ width: '90%' }}>{document.title}</div>
+                {AuthData.user.uid === 'RIrcjAX7YFf32qwYaGEqIfV7AgK2' ? (
+                  <div style={{ width: '10%', textAlign: 'end' }}>
+                    <IconButton aria-label="delete" size="small" onClick={(e) => handleDelete(e, document.document_id)}>
+                      <DeleteIcon fontSize="inherit" />
+                    </IconButton>
+                  </div>
+                ) : null}
               </AccordionSummary>
               <AccordionDetails>
                 <Typography>{document.content}</Typography>

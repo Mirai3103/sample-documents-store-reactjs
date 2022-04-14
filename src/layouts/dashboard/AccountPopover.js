@@ -15,7 +15,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 
 const MENU_OPTIONS = [
   { id: 1, label: 'Home', icon: homeFill, linkTo: '/home' },
-  { id: 2, label: 'My Profile', icon: personFill, linkTo: 'https://facebook.com/mirai1309' },
+  { id: 2, label: 'Kho lưu trữ', icon: personFill, linkTo: 'https://facebook.com/mirai1309' },
   { id: 3, label: 'Góp ý', icon: settings2Fill, linkTo: '#' }
 ];
 
@@ -38,7 +38,7 @@ export default function AccountPopover() {
         navigate('/home');
         break;
       case 2:
-        alert('Tôi ẩn danh');
+        alert('Đang phát triển');
         // window.open('https://facebook.com/mirai1309');
         break;
       case 3:
@@ -46,13 +46,11 @@ export default function AccountPopover() {
       default:
         break;
     }
-    console.log(id);
     handleClose();
   };
   const handleLogin = () => {
     navigate('/login');
   };
-  console.log(AuthData.user.photoURL);
   return AuthData.user.displayName === undefined ? (
     <Box sx={{ p: 2, pt: 1.5 }}>
       <Button fullWidth color="secondary" variant="outlined" onClick={handleLogin}>

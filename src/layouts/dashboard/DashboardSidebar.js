@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
 // material
 import { alpha, styled } from '@mui/material/styles';
 import { Box, Stack, Avatar, Drawer, Tooltip, CardActionArea, Button } from '@mui/material';
@@ -14,6 +14,7 @@ import NavSection from '../../components/NavSection';
 import { MHidden } from '../../components/@material-extend';
 import sidebarConfig from './SidebarConfig';
 import DialogForm from './DialogForm';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 // ----------------------------------------------------------------------
 
@@ -80,10 +81,18 @@ DashboardSidebar.propTypes = {
 };
 export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   const { pathname } = useLocation();
+
+  const navigate = useNavigate();
   const [openFormDialog, setOpenFormDialog] = useState(false);
+  const AuthData = useContext(AuthContext);
 
   const handleClickOpenFormDialog = () => {
-    setOpenFormDialog(true);
+    if (AuthData.user.uid === undefined) {
+      alert('vui long dang nhap');
+      navigate('/login');
+    } else {
+      setOpenFormDialog(true);
+    }
   };
 
   const handleCloseFormDialog = () => {
@@ -143,7 +152,11 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
           </Button>
         )}
       </Stack>
-      <DialogForm openFormDialog={openFormDialog} handleCloseFormDialog={handleCloseFormDialog} />
+      <DialogForm
+        openFormDialog={openFormDialog}
+        handleCloseFormDialog={handleCloseFormDialog}
+        uid={AuthData.user.uId}
+      />
       <NavSection navConfig={sidebarConfig} isShow={!isCollapse} />
     </Scrollbar>
   );
