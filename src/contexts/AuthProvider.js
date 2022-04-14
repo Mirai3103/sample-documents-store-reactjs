@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase/config';
 
 export const AuthContext = React.createContext({});
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState({});
-  const history = useNavigate();
+  // const history = useNavigate();
   React.useEffect(() => {
+    // eslint-disable-next-line no-unused-vars
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         const { displayName, email, photoURL, uid } = user;

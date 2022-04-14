@@ -12,7 +12,7 @@ import { TagInfoMemo } from '../components/TagInfo';
 
 // ----------------------------------------------------------------------let dataSearch = [];
 export default function PageHome() {
-  const [state, setState] = useContext(StoreContext).data;
+  const state = useContext(StoreContext).data[0];
   const { themeStretch } = useSettings();
   const [expanded, setExpanded] = useState(false);
   const handleChange = (panel) => (event, isExpanded) => {

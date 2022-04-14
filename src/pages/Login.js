@@ -25,7 +25,9 @@ export default function Login() {
   return (
     <div>
       <h1>Login</h1>
+      {/* eslint-disable-next-line react/button-has-type */}
       <button onClick={handleLoginGG}>Login with Google</button>
+      {/* eslint-disable-next-line react/button-has-type */}
       <button onClick={handleLoginFB}>Login with Facebook</button>
     </div>
   );

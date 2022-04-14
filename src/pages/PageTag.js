@@ -25,7 +25,7 @@ import { StoreContext } from '../store';
 
 export default function PageTag({ id, title }) {
   const { themeStretch } = useSettings();
-  const [state, dispatch] = useContext(StoreContext).data;
+  const state = useContext(StoreContext).data[0];
   const [expanded, setExpanded] = useState(false);
   const [totalPage, setTotalPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
