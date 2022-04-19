@@ -62,7 +62,7 @@ function TagInfo({ documentId, allTags }) {
         <Typography sx={{ p: 2 }} noWrap={false}>
           {tagsListString === '' ? 'Không có' : tagsListString},{' '}
         </Typography>
-        {AuthData.user.uid === 'RIrcjAX7YFf32qwYaGEqIfV7AgK2' ? (
+        {AuthData.user.uid !== undefined ? (
           <AddTagPopUp documentId={documentId} allTags={allTags} closeParent={handleSetClosePopover} />
         ) : null}
       </Popover>

@@ -27,6 +27,10 @@ const sidebarConfig = [
       { title: 'Bày tỏ cảm xúc', path: PATH_DASHBOARD.general.pageFive, icon: <RecordVoiceOverIcon /> },
       { title: 'Trend', path: PATH_DASHBOARD.general.pageSix, icon: <TrendingUpIcon /> }
     ]
+  },
+  {
+    subheader: 'user',
+    items: [{ title: 'Kho luu tru', path: PATH_DASHBOARD.user.storePage, icon: <AccessibleIcon /> }]
   }
 
   // MANAGEMENT

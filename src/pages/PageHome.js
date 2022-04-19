@@ -1,21 +1,10 @@
 // material
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  CircularProgress,
-  Container,
-  IconButton,
-  Stack,
-  Typography
-} from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { CircularProgress, Container, Stack } from '@mui/material';
+
 // hooks
 import { useContext, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import DeleteIcon from '@mui/icons-material/Delete';
-import axios from 'axios';
-import CopyButton from './CopyButton';
+
 import useSettings from '../hooks/useSettings';
 // components
 import Page from '../components/Page';
@@ -24,8 +13,10 @@ import { StoreContext } from '../store';
 import SurveyDialog from '../layouts/dashboard/SurveyDialog';
 import { setData, setHomeTotalPage } from '../store/reducer';
 import { BASE_URL } from '../config';
-import { TagInfoMemo } from '../components/TagInfo';
+
 import { AuthContext } from '../contexts/AuthProvider';
+
+import { mapDoc } from './mapFunction';
 // ----------------------------------------------------------------------
 
 export default function PageHome() {
@@ -53,21 +44,9 @@ export default function PageHome() {
       dispatch(setData([]));
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, searchParams]);
+  }, [searchParams]);
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
-  };
-  const handleDelete = (event, documentId) => {
-    axios
-      .post(`${BASE_URL}/deleteDocument`, {
-        documentId
-      })
-      .then(() => {
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
   return (
     <Page title="Home Page | Văn mẫu">
@@ -79,32 +58,7 @@ export default function PageHome() {
             <CircularProgress color="secondary" />
           </Stack>
         ) : (
-          state.data.map((document) => (
-            <Accordion
-              key={document.document_id}
-              expanded={expanded === document.document_id}
-              onChange={handleChange(document.document_id)}
-            >
-              <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-                <div style={{ width: '90%' }}>{document.title}</div>
-                {AuthData.user.uid === 'RIrcjAX7YFf32qwYaGEqIfV7AgK2' ? (
-                  <div style={{ width: '10%', textAlign: 'end' }}>
-                    <IconButton aria-label="delete" size="small" onClick={(e) => handleDelete(e, document.document_id)}>
-                      <DeleteIcon fontSize="inherit" />
-                    </IconButton>
-                  </div>
-                ) : null}
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>{document.content}</Typography>
-                <br />
-                <Stack className="copy-button" direction="row" spacing={2}>
-                  <CopyButton id={document.document_id} content={document.content} />
-                  <TagInfoMemo documentId={document.document_id} allTags={state.allTags} />
-                </Stack>
-              </AccordionDetails>
-            </Accordion>
-          ))
+          state.data.map(mapDoc(expanded, handleChange, AuthData, state))
         )}
         <PageNumber searchParams={searchParams} pageCount={state.homeTotalPage} setSearchParam={setSearchParams} />
       </Container>

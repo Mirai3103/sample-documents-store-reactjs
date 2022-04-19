@@ -1,29 +1,23 @@
 // material
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  CircularProgress,
-  Container,
-  Stack,
-  Typography
-} from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { CircularProgress, Container, Stack } from '@mui/material';
 // hooks
 import { useContext, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import CopyButton from './CopyButton';
+
 import useSettings from '../hooks/useSettings';
 // components
 import Page from '../components/Page';
 import PageNumber from './pagenumber/PageNumber';
 import { BASE_URL } from '../config';
-import { TagInfoMemo } from '../components/TagInfo';
+
 import { StoreContext } from '../store';
+import { AuthContext } from '../contexts/AuthProvider';
+import { mapDoc } from './mapFunction';
 
 // ----------------------------------------------------------------------
 
 export default function PageTag({ id, title }) {
+  const AuthData = useContext(AuthContext);
   const { themeStretch } = useSettings();
   const state = useContext(StoreContext).data[0];
   const [expanded, setExpanded] = useState(false);
@@ -58,25 +52,7 @@ export default function PageTag({ id, title }) {
             <CircularProgress color="secondary" />
           </Stack>
         ) : (
-          documents.map((document) => (
-            <Accordion
-              key={document.document_id}
-              expanded={expanded === document.document_id}
-              onChange={handleChange(document.document_id)}
-            >
-              <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-                <Typography>{document.title}</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>{document.content}</Typography>
-                <br />
-                <Stack className="copy-button" direction="row" spacing={2}>
-                  <CopyButton id={document.document_id} content={document.content} />
-                  <TagInfoMemo documentId={document.document_id} allTags={state.allTags} />
-                </Stack>
-              </AccordionDetails>
-            </Accordion>
-          ))
+          documents.map(mapDoc(expanded, handleChange, AuthData, state))
         )}
         <PageNumber searchParams={searchParams} pageCount={totalPage} setSearchParam={setSearchParams} />
       </Container>

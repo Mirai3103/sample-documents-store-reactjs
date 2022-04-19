@@ -19,13 +19,10 @@ export const PATH_DASHBOARD = {
     pageSix: path(ROOTS_DASHBOARD, '/6'),
     login: path(ROOTS_DASHBOARD, '/login')
   },
-  // app: {
-  //   root: path(ROOTS_DASHBOARD, '/app'),
-  //   pageFour: path(ROOTS_DASHBOARD, '/app/four'),
-  //   pageFive: path(ROOTS_DASHBOARD, '/app/five'),
-  //   pageSix: path(ROOTS_DASHBOARD, '/app/six')
-  // },
-  advancedSearch: {
-    root: path(ROOTS_DASHBOARD, '/advanced-search')
+  user: {
+    root: path(ROOTS_DASHBOARD, '/user'),
+    storePage: path(ROOTS_DASHBOARD, '/user/StorePage')
+    // pageFive: path(ROOTS_DASHBOARD, '/app/five'),
+    // pageSix: path(ROOTS_DASHBOARD, '/app/six')
   }
 };

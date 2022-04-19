@@ -38,7 +38,7 @@ export default function AccountPopover() {
         navigate('/home');
         break;
       case 2:
-        alert('Đang phát triển');
+        navigate('/user/storepage');
         // window.open('https://facebook.com/mirai1309');
         break;
       case 3:

@@ -71,11 +71,15 @@ export default function Router() {
         { path: '6', element: <PageTag id={6} title="Trending" /> },
         { path: 'login', element: <Login /> },
         // { path: 'advancedSearch', element: <PageFour /> },
-        // {
-        //   path: 'app',
-        //   children: [{ element: <Navigate to="/app/four" replace /> }, ...allTagsChill]
-        // },
-        { path: 'search', element: <SearchPage /> }
+
+        { path: 'search', element: <SearchPage /> },
+        {
+          path: 'user',
+          children: [
+            { element: <Navigate to="/user/storepage" replace /> },
+            { path: 'storePage', element: <StorePage /> }
+          ]
+        }
       ]
     },
     { path: '*', element: <Navigate to="/404" replace /> }
@@ -84,11 +88,7 @@ export default function Router() {
 
 const PageHome = Loadable(lazy(() => import('../pages/PageHome')));
 const PageTag = Loadable(lazy(() => import('../pages/PageTag')));
-// const PageTwo = Loadable(lazy(() => import('../pages/PageTwo')));
-// const PageThree = Loadable(lazy(() => import('../pages/PageThree')));
-// const PageFour = Loadable(lazy(() => import('../pages/PageFour')));
-// const PageFive = Loadable(lazy(() => import('../pages/PageFive')));
-// const PageSix = Loadable(lazy(() => import('../pages/PageSix')));
+const StorePage = Loadable(lazy(() => import('../pages/StorePage')));
 const NotFound = Loadable(lazy(() => import('../pages/Page404')));
 // Main
 // const LandingPage = Loadable(lazy(() => import('../pages/LandingPage')));

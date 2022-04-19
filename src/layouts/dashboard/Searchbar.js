@@ -66,8 +66,10 @@ export default function Searchbar() {
     setOpen(false);
   };
   const navigate = useNavigate();
+  const [buttonDisabled, setButtonDisabled] = useState(false);
   const handleSearch = (e) => {
     if (e.target.innerText.trim() === 'Search') {
+      setButtonDisabled(true);
       axios
         .post(`${BASE_URL}/api`, {
           tags: selectedTags
@@ -77,6 +79,7 @@ export default function Searchbar() {
           console.log('Search success');
           navigate('/search');
           handleClose(e);
+          setButtonDisabled(false);
         })
         .catch((error) => console.log(error));
     }
@@ -115,7 +118,7 @@ export default function Searchbar() {
                   <TextField {...params} variant="filled" label="Search with tags name" placeholder="Nhập tag" />
                 )}
               />
-              <Button variant="contained" onClick={handleSearch}>
+              <Button variant="contained" onClick={handleSearch} disabled={buttonDisabled}>
                 Search
               </Button>
             </SearchbarStyle>
