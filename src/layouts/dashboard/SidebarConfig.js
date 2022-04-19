@@ -6,6 +6,7 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 // import AlignHorizontalLeftIcon from '@mui/icons-material/AlignHorizontalLeft';
+import InventoryIcon from '@mui/icons-material/Inventory';
 import { PATH_DASHBOARD } from '../../routes/paths';
 // components
 // ----------------------------------------------------------------------
@@ -30,14 +31,14 @@ const sidebarConfig = [
   },
   {
     subheader: 'user',
-    items: [{ title: 'Kho luu tru', path: PATH_DASHBOARD.user.storePage, icon: <AccessibleIcon /> }]
+    items: [{ title: 'Kho lưu trữ', path: PATH_DASHBOARD.user.storePage, icon: <InventoryIcon /> }]
   }
 
   // MANAGEMENT
   // ----------------------------------------------------------------------
   // {
   //   subheader: 'Advanced',
-  //   items: [
+  //   items: [trữ
   //     {
   //       title: 'All Tags',
   //       path: PATH_DASHBOARD.app.root,

@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import { useContext, useRef, useState } from 'react';
 import homeFill from '@iconify/icons-eva/home-fill';
-import personFill from '@iconify/icons-eva/person-fill';
+import archiveFill from '@iconify/icons-eva/archive-fill';
 import settings2Fill from '@iconify/icons-eva/settings-2-fill';
 import { useNavigate } from 'react-router-dom';
 // material
@@ -15,7 +15,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 
 const MENU_OPTIONS = [
   { id: 1, label: 'Home', icon: homeFill, linkTo: '/home' },
-  { id: 2, label: 'Kho lưu trữ', icon: personFill, linkTo: 'https://facebook.com/mirai1309' },
+  { id: 2, label: 'Kho lưu trữ', icon: archiveFill, linkTo: 'https://facebook.com/mirai1309' },
   { id: 3, label: 'Góp ý', icon: settings2Fill, linkTo: '#' }
 ];
 

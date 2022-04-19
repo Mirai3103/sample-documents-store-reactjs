@@ -4,7 +4,7 @@ temp.txt
 /node_modules
 /.pnp
 .pnp.js
-
+configKey.js
 # testing
 /coverage
 

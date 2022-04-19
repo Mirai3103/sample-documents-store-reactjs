@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Container } from '@mui/material';
+import { CircularProgress, Container, Stack } from '@mui/material';
 import axios from 'axios';
 import { AuthContext } from '../contexts/AuthProvider';
 import useSettings from '../hooks/useSettings';
@@ -19,28 +19,38 @@ export default function StorePage() {
     setExpanded(isExpanded ? panel : false);
   };
   React.useEffect(() => {
-    axios
-      .post(`${BASE_URL}/api/userStore`, {
-        documentsId: AuthData.user.likedDocument
-      })
-      .then((res) => {
-        console.log(res.data);
-        dispatch(setData(res.data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (AuthData.user.likedDocument !== undefined && AuthData.user.likedDocument.length !== 0) {
+      axios
+        .post(`${BASE_URL}/api/userStore`, {
+          documentsId: AuthData.user.likedDocument
+        })
+        .then((res) => {
+          dispatch(setData(res.data));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
     return () => {
       dispatch(setData([]));
     };
   }, [dispatch, AuthData]);
+  let isShowDontHave = false;
+  if (AuthData.user.likedDocument === undefined) {
+    isShowDontHave = true;
+  } else isShowDontHave = AuthData.user.likedDocument.length === 0;
   return (
     <Page title="User Store | Văn mẫu">
       <SurveyDialog />
       <h1 style={{ marginBottom: '1rem' }}>Kho Luu tru</h1>
       <Container maxWidth={themeStretch ? false : 'xl'}>
-        {state.data[0] === undefined ? (
-          <h1>Khong co</h1>
+        {/* eslint-disable-next-line no-nested-ternary */}
+        {isShowDontHave ? (
+          <h1>Bạn chưa like văn mẫu nào cả </h1>
+        ) : state.data[0] === undefined ? (
+          <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row" className="loading-spinner">
+            <CircularProgress color="secondary" />
+          </Stack>
         ) : (
           state.data.map(mapDoc(expanded, handleChange, AuthData, state))
         )}
