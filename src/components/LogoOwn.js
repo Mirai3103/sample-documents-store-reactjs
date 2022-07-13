@@ -13,7 +13,7 @@ export default function Logo({ sx }) {
     <Box sx={{ width: 40, height: 40, ...sx }}>
       <img
         alt="anh"
-        src="https://scontent.fsgn5-7.fna.fbcdn.net/v/t1.6435-9/167018959_1234469226951266_3674830128936029280_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=0debeb&_nc_ohc=QSoRXxS14qQAX8MR8vW&_nc_ht=scontent.fsgn5-7.fna&oh=00_AT_qIUWMOih-zFGPClyJXOb4iDx5cYLKlWZG1bf5chNFOA&oe=627E7843"
+        src="https://scontent.fdad3-4.fna.fbcdn.net/v/t1.6435-9/118566542_1080850618979795_8084277783122173362_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=3dfyJ9Btkm4AX8R-xDQ&_nc_ht=scontent.fdad3-4.fna&oh=00_AT8WetD14S5tk4h8z6P6c45snCztThrbCQvN1LewDypXUw&oe=62F471A0"
       />
     </Box>
   );
